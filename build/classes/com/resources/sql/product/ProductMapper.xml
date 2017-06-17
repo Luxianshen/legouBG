@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ <mapper namespace="com.neuedu.product.mapper.ProductMapper"> 
+     <resultMap type="com.neuedu.product.entity.Product" id="productResultMap"> 
+	    <id property="proId" column="proId" javaType="java.lang.Integer"/>  
+	    <result property="proName" column="proName" javaType="java.lang.String"/> 
+	    <result property="proType" column="proType" javaType="java.lang.String"/> 
+	    <result property="proPrice" column="proPrice" javaType="java.math.BigDecimal"/>
+	    <result property="proNum" column="proNum" javaType="java.lang.Integer"/>
+	    <result property="proSrc" column="proSrc" javaType="java.lang.String"/>
+	    <result property="proAddress" column="proAddress" javaType="java.lang.String"/>
+	    <result property="proFare" column="proFare" javaType="java.lang.String"/>
+	    <result property="proalrePay" column="proalrePay" javaType="java.lang.String"/>
+	    <result property="prodescribe" column="prodescribe" javaType="java.lang.String"/>
+	    <result property="stock" column="stock" javaType="java.lang.Integer"/>
+	 </resultMap> 
+ 
+   <!--  <insert id="insertProduct" parameterType="com.neusoft.basis.product.entity.ProductEntity" > 
+	    insert into product(id,proname,inprice,saleprice,profit,brand,proarea,num,salenum,nownum,isDel,insertUserId,insertDate) values(#{id}, #{proname},#{inprice},#{saleprice},#{profit},#{brand},#{proarea},#{num},#{salenum},#{nownum},'0',#{insertUserId},#{insertDate})
+	</insert>  -->
+	
+	<select id="getAllProduct" resultMap="productResultMap">
+       SELECT * from product;
+    </select>
+     
+    <select id="getOneProduct" parameterType="java.lang.String" resultMap="productResultMap"> 
+	   <![CDATA[ 
+	     SELECT * from product b
+	     WHERE b.proId = #{proId}
+	    ]]> 
+    </select> 
+    
+    <select id="findtypepro" resultMap="productResultMap">
+       <![CDATA[ 
+       SELECT * from product b
+       WHERE b.proType=#{proType}
+       ]]> 
+    </select>
+    
+    <select id="search" resultMap="productResultMap">
+       <![CDATA[ 
+       SELECT * from product b
+       WHERE b.proName like CONCAT('%',#{name},'%')
+       ]]> 
+    </select>
+    
+ 
+   <!--  
+    <select id="getUserBranchList" parameterType="com.neusoft.basis.user.entity.UserEntity" resultMap="productResultMap">
+        <if test="branchId == null or branchId == ''">
+		    select '' id,'请选择' name
+		    union	    
+	    </if>
+       SELECT id,name from branch 
+         where 1 = 1
+        <if test="branchId != '' and branchId != null">
+			        and id = #{branchId}
+	    </if>
+    </select>
+   
+	
+	<update id="updateProduct" parameterType="com.neusoft.basis.product.entity.ProductEntity" > 
+	    update product
+	       set 
+	       proname= #{proname},
+	       inprice=#{inprice},
+	       saleprice=#{saleprice},
+	       profit=#{profit},
+	       brand=#{brand},
+	       proarea=#{proarea},
+	       num=#{num},
+	       salenum=#{salenum},
+	       nownum=#{nownum},
+	       isDel=#{isDel},
+	       lastModifyUserId =  #{lastModifyUserId} ,
+	       lastModifyDate =  #{lastModifyDate}
+	              
+	     WHERE id = #{id}
+	</update> 
+	 <update id="updateProductStatus" parameterType="com.neusoft.basis.product.entity.ProductEntity" > 
+	    update product
+	       set isDel=#{isDel},
+	           lastModifyUserId =  #{lastModifyUserId} ,
+	           lastModifyDate =  #{lastModifyDate}       
+	     WHERE id = #{id}
+	</update>  -->
+ 
+ </mapper>

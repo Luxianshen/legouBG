@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>	
+	<package name="user" namespace="/" extends="struts-default">
+			 	
+		<action name="login" method="findUser" class="userAction" >
+			<!-- <exception-mapping result="error" exception="java.lang.Exception" /> -->
+			<result name="success">/product/proMgt.jsp</result>
+			<!-- <interceptor-ref name="defaultStack" />
+			<interceptor-ref name="auth" /> -->
+		</action>
+		
+	    <action name="register" method="zhuce" class="userAction" >
+			<!-- <exception-mapping result="error" exception="java.lang.Exception" /> -->
+			<result name="success">/product/proMgt.jsp</result>
+			<!-- <interceptor-ref name="defaultStack" />
+			<interceptor-ref name="auth" /> -->
+		</action>
+		
+		 <action name="cheackuser" method="cheackUser" class="userAction" >
+			<!-- <exception-mapping result="error" exception="java.lang.Exception" /> -->
+			<result name="success">/product/proMgt.jsp</result>
+			<!-- <interceptor-ref name="defaultStack" />
+			<interceptor-ref name="auth" /> -->
+		</action>
+		 <action name="findoneuser" method="findoneuser" class="userAction" >
+			<!-- <exception-mapping result="error" exception="java.lang.Exception" /> -->
+			<result name="success">/product/proMgt.jsp</result>
+			<!-- <interceptor-ref name="defaultStack" />
+			<interceptor-ref name="auth" /> -->
+		</action>
+	</package>
+</struts>

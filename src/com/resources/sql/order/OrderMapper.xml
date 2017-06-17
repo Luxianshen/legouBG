@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ <mapper namespace="com.neuedu.order.mapper.OrderMapper"> 
+     <resultMap type="com.neuedu.order.entity.Order" id="orderResultMap"> 
+	    <id property="orderId" column="orderId" javaType="java.lang.Integer"/>  
+	    <result property="userID" column="userID" javaType="java.lang.Integer"/> 
+	    <result property="proId" column="proId" javaType="java.lang.Integer"/> 
+	    <result property="orderTime" column="orderTime" javaType="java.util.Date"/>
+	    <result property="orderNum" column="orderNum" javaType="java.lang.Integer"/>
+	    <result property="orderPay" column="orderPay" javaType="java.lang.String"/>
+	    <result property="orderIsDel" column="orderIsDel" javaType="java.lang.String"/>
+	   
+	 </resultMap> 
+	 
+	 
+	  
+    <select id="getOrder" parameterType="java.lang.Integer" resultMap="orderResultMap"> 
+	   <![CDATA[ 
+	     SELECT * from orders b
+	     WHERE b.userID = #{userID}
+	    ]]> 
+    </select> 
+     <select id="getOrderone" parameterType="java.lang.String" resultMap="orderResultMap"> 
+	   
+	     SELECT * from orders b
+	     WHERE b.userID = #{0} AND b.proId = #{1}
+	   
+    </select> 
+ 
+     <insert id="insertOrders" parameterType="com.neuedu.order.entity.Order" > 
+	    insert into orders(orderId,userID,proId,orderTime,orderNum,orderPrice,orderPay,orderIsDel) 
+	    values(#{orderId}, #{userID},#{proId},#{orderTime},#{orderNum},#{orderPrice},#{orderPay},#{orderIsDel})
+	</insert>  
+	
+	 <update id="Orderupdate" parameterType="com.neuedu.order.entity.Order" > 
+	    update orders
+	       set 
+	       userID=#{userID},
+	       proId=#{proId},
+	       orderTime=#{orderTime},
+	       orderNum=#{orderNum},
+	       orderPrice=#{orderPrice},
+	       orderPay=#{orderPay},
+	       orderIsDel=#{orderIsDel}
+	             
+	     WHERE orderId = #{orderId}
+
+	</update>
+	 
+	
+	<!-- <select id="getOrder" resultMap="orderResultMap">
+       SELECT * from orders;
+    </select> -->
+    <!-- 
+    <select id="getUserBranchList" parameterType="com.neusoft.basis.user.entity.UserEntity" resultMap="productResultMap">
+        <if test="branchId == null or branchId == ''">
+		    select '' id,'请选择' name
+		    union	    
+	    </if>
+       SELECT id,name from branch 
+         where 1 = 1
+        <if test="branchId != '' and branchId != null">
+			        and id = #{branchId}
+	    </if>
+    </select> -->
+   
+	
+	<!-- 
+	 <update id="getOrderdel" parameterType="com.neuedu.order.entity.Order" > 
+	    update orders
+	       set isDel=#{isDel},
+	               
+	     WHERE id = #{id}
+	</update> 
+	-->
+	
+ 
+ </mapper>
